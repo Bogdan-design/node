@@ -2,6 +2,7 @@ const products = [{id: 1, title: 'tomato'}, {id: 2, title: 'orange'}]
 
 export const productsRepository = {
     findProducts(title:string | null | undefined){
+        debugger
         if (title) {
 
            const filteredProducts = products.filter(p => p.title.indexOf(title) > -1)

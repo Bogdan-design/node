@@ -5,6 +5,7 @@ export const productsRouter = Router({})
 
 
 productsRouter.get('/', (req: Request, res: Response) => {
+    debugger
     const foundProducts = productsRepository.findProducts(req.query.title?.toString())
     res.send(foundProducts)
 })
@@ -27,6 +28,9 @@ productsRouter.delete('/:id', (req: Request, res: Response) => {
     }
 })
 productsRouter.post('/', (req: Request, res: Response) => {
+    if(!req.body.title.trim()){
+        res.status(401).send({message: 'title is required'})
+    }
     const newProduct = productsRepository.createProduct(req.body.title)
     res.status(201).send(newProduct)
 })

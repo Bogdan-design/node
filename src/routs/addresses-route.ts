@@ -1,9 +1,10 @@
 import {Request, Response, Router} from "express";
 
+const addresses = [{id: 1, value: 'Nezalejnasti 12'}, {id: 2, value: 'Selikaga 11'}]
+
+
 export const addressesRouter = Router({})
 
-
-const addresses = [{id: 1, value: 'Nezalejnasti 12'}, {id: 2, value: 'Selikaga 11'}]
 addressesRouter.get('/', (req: Request, res: Response) => {
     res.send(addresses)
 })
