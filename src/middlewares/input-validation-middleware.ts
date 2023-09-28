@@ -1,5 +1,5 @@
 import {Request,Response,NextFunction} from "express";
-import {validationResult} from "express-validator";
+import {body, validationResult} from "express-validator";
 
 export const inputValidationMiddleware = (req:Request,res:Response, next: NextFunction) =>{
     const result = validationResult(req)
@@ -10,3 +10,8 @@ export const inputValidationMiddleware = (req:Request,res:Response, next: NextFu
     res.send({ errors: result.array() })
     next()
 }
+
+export const titleValidation = body('title').notEmpty().isLength({
+    min: 3,
+    max: 10
+}).withMessage('title should be from 3 to 10 symbols')

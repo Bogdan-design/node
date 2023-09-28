@@ -5,7 +5,7 @@ export type ProductsType = {
 
 const products: ProductsType[] = [{id: 1, title: 'tomato'}, {id: 2, title: 'orange'}]
 
-export const productsRepository = {
+export const productsInMemoryRepository = {
     async findProducts(title: string | null | undefined): Promise<ProductsType[]> {
         if (title) {
 
@@ -15,9 +15,13 @@ export const productsRepository = {
             return products
         }
     },
-    getProductById(id: number) {
+    async getProductById(id: number) : Promise<ProductsType | null> {
         const product = products.find(p => p.id === id)
-        return product
+        if(product){
+            return product
+        } else {
+            return null
+        }
     },
     async createProduct(title: string): Promise<ProductsType> {
         const newProduct = {
