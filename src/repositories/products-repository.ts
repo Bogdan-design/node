@@ -1,21 +1,25 @@
-const products = [{id: 1, title: 'tomato'}, {id: 2, title: 'orange'}]
+export type ProductsType = {
+    id: number
+    title: string
+}
+
+const products: ProductsType[] = [{id: 1, title: 'tomato'}, {id: 2, title: 'orange'}]
 
 export const productsRepository = {
-    findProducts(title:string | null | undefined){
-        debugger
+    async findProducts(title: string | null | undefined): Promise<ProductsType[]> {
         if (title) {
 
-           const filteredProducts = products.filter(p => p.title.indexOf(title) > -1)
+            const filteredProducts = products.filter(p => p.title.indexOf(title) > -1)
             return filteredProducts
         } else {
             return products
         }
     },
-    getProductById(id:number){
-        const product = products.find(p=>p.id === id)
+    getProductById(id: number) {
+        const product = products.find(p => p.id === id)
         return product
     },
-    createProduct(title: string){
+    async createProduct(title: string): Promise<ProductsType> {
         const newProduct = {
             id: +(new Date()),
             title: title
@@ -23,23 +27,22 @@ export const productsRepository = {
         products.push(newProduct)
         return newProduct
     },
-    updateProduct(id: number,title: string){
-        const product = products.find(p => p.id ===id)
+    async updateProduct(id: number, title: string): Promise<boolean> {
+        const product = products.find(p => p.id === id)
         if (product) {
             product.title = title
-           return true
+            return true
         } else {
             return false
         }
     },
-    deleteProduct(id: number){
+    async deleteProduct(id: number): Promise<boolean> {
         for (let i = 0; i < products.length; i++) {
             if (products[i].id === id) {
-               products.splice(i, 1)
+                products.splice(i, 1)
                 return true
-            } else {
-                return false
             }
         }
+        return false
     }
 }
