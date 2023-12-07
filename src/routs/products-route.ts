@@ -1,5 +1,6 @@
 import {Request, Response, Router} from "express";
-import {productsInMemoryRepository, ProductsType} from "../repositories/products-db-repository";
+import {productsInMemoryRepository} from "../repositories/products-db-repository";
+import {ProductsType} from "../repositories/db";
 
 export const productsRouter = Router({})
 

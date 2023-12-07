@@ -1,5 +1,6 @@
 {
   "name": "untitled1",
+  "baseUrl": "src",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
