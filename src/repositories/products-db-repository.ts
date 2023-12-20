@@ -1,7 +1,7 @@
 import {productsCollection, ProductsType} from "../repositories/db";
 
 
-export const productsInMemoryRepository = {
+export const productsRepository = {
     async findProducts(title: string | null | undefined): Promise<ProductsType[]> {
         const filter:any = {}
         if (title) {
@@ -10,7 +10,7 @@ export const productsInMemoryRepository = {
         return productsCollection.find(filter).toArray()
     },
     async getProductById(id: number): Promise<ProductsType | null> {
-        const product: ProductsType | null = await productsCollection.findOne({id: id})
+        const product: ProductsType | null = await productsCollection.findOne({id})
         if (product) {
             return product
         } else {

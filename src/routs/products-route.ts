@@ -1,19 +1,19 @@
 import {Request, Response, Router} from "express";
-import {productsInMemoryRepository} from "../repositories/products-db-repository";
+import {productsRepository} from "../repositories/products-db-repository";
 import {ProductsType} from "../repositories/db";
 
 export const productsRouter = Router({})
 
 
 productsRouter.get('/', async (req: Request, res: Response) => {
-    const foundProducts: ProductsType[] = await productsInMemoryRepository.findProducts(req.query.title?.toString())
+    const foundProducts: ProductsType[] = await productsRepository.findProducts(req.query.title?.toString())
 
     res.send(foundProducts)
 })
 
 
 productsRouter.get('/:id', async (req: Request, res: Response) => {
-    const product: ProductsType | null = await productsInMemoryRepository.getProductById(+req.params.id)
+    const product: ProductsType | null = await productsRepository.getProductById(+req.params.id)
     if (product) {
         res.send(product)
     } else {
@@ -21,7 +21,7 @@ productsRouter.get('/:id', async (req: Request, res: Response) => {
     }
 })
 productsRouter.delete('/:id', async (req: Request, res: Response) => {
-    const isDeleted: boolean = await productsInMemoryRepository.deleteProduct(+req.params.id)
+    const isDeleted: boolean = await productsRepository.deleteProduct(+req.params.id)
     if (isDeleted) {
         res.send(204)
     } else {
@@ -29,13 +29,13 @@ productsRouter.delete('/:id', async (req: Request, res: Response) => {
     }
 })
 productsRouter.post('/', async (req: Request, res: Response) => {
-    const newProduct: ProductsType = await productsInMemoryRepository.createProduct(req.body.title)
+    const newProduct: ProductsType = await productsRepository.createProduct(req.body.title)
     res.status(201).send(newProduct)
 })
 productsRouter.put('/:id', async (req: Request, res: Response) => {
-    const isUpDated: boolean = await productsInMemoryRepository.updateProduct(+req.params.id, req.body.title)
+    const isUpDated: boolean = await productsRepository.updateProduct(+req.params.id, req.body.title)
     if (isUpDated) {
-        const product = await productsInMemoryRepository.getProductById(+req.params.id)
+        const product = await productsRepository.getProductById(+req.params.id)
         res.send(product)
     } else {
         res.send(404)
