@@ -1,7 +1,11 @@
+
+const dbVideos: DBVideo[] = []
+const authors: DBAuthor[] = []
+
+
 const videoQueryRepo = {
     getVideos(): VideoOutputModel[] {
-        const dbVideos: DBVideo[] = []
-        const authors: DBAuthor[] = []
+
         return dbVideos.map(dbVideo => {
 
             const author = authors.find(a => a._id === dbVideo.authorId)
@@ -25,8 +29,7 @@ const videoQueryRepo = {
 
     },
     getBannedVideos(): BannedVideoOutputModel[] {
-        const dbVideos: DBVideo[] = []
-        const authors: DBAuthor[] = []
+
         return dbVideos.map(dbVideo => {
 
             const author = authors.find(a => a._id === dbVideo.authorId)
