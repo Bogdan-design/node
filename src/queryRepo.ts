@@ -57,6 +57,11 @@ const videoQueryRepo = {
     }
 }
 
+type AuthorType = {
+    id: string
+    name: string
+}
+
 type DBVideo = {
     _id: string
     title: string
@@ -76,17 +81,11 @@ type DBAuthor = {
 export type VideoOutputModel = {
     id: string
     title: string
-    author: {
-        id: string
-        name: string
-    }
+    author: AuthorType
 }
 export type BannedVideoOutputModel = {
     id: string
     title: string
-    author: {
-        id: string
-        name: string
-    }
+    author: AuthorType
     banReason: string
 }
