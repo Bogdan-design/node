@@ -62,14 +62,16 @@ type AuthorType = {
     name: string
 }
 
+type BanObject = {
+    isBanned: boolean
+    banReason: string
+}
+
 type DBVideo = {
     _id: string
     title: string
     authorId: string
-    banObject?: null | {
-        isBanned: boolean
-        banReason: string
-    }
+    banObject?: null | BanObject
 }
 
 type DBAuthor = {
