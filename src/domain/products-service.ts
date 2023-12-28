@@ -13,8 +13,7 @@ export const productsService = {
             id: +(new Date()),
             title: title
         }
-        const createdProduct = await productsRepository.createProduct(newProduct)
-        return createdProduct
+        return await productsRepository.createProduct(newProduct)
     },
     async updateProduct(id: number, title: string): Promise<boolean> {
         return await productsRepository.updateProduct(id,title)
