@@ -9,8 +9,7 @@ export const productsInMemoryRepository = {
     async findProducts(title: string | null | undefined): Promise<ProductsType[]> {
         if (title) {
 
-            const filteredProducts = __products.filter(p => p.title.indexOf(title) > -1)
-            return filteredProducts
+            return __products.filter(p => p.title.indexOf(title) > -1)
         } else {
             return __products
         }
