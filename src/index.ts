@@ -10,7 +10,7 @@ const app = express()
 
 const jsonRouterMiddleware = bodyParser.json()
 app.use(jsonRouterMiddleware)
-app.use(inputValidationMiddleware)
+// app.use(inputValidationMiddleware)
 
 const port = process.env.PORT || 3001
 
